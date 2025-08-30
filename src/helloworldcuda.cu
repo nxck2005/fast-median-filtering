@@ -1,6 +1,5 @@
-#include <iostream>
 #include <cuda_runtime.h>
-
+#include <stdio.h>
 // __global__ defines a function (a "kernel") that runs on the GPU
 // It can be called from the CPU (the host)
 __global__ void addKernel(int *c, const int *a, const int *b) {
@@ -43,7 +42,7 @@ int main() {
 
     // PRINT AND CLEAN UP
     // print and clean, obviously
-    std::cout << "Hello from the GPU! The result is: " << c << std::endl;
+    printf("Hello from the GPU! THe result is: %d\n", c);
     cudaFree(dev_a);
     cudaFree(dev_b);
     cudaFree(dev_c);

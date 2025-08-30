@@ -1,4 +1,3 @@
-#include <iostream>
 #include <cuda_runtime.h>
 #include <stdio.h> // For fprintf
 
@@ -43,7 +42,7 @@ int main() {
 
     gpuErrchk(cudaMemcpy(&c, dev_c, sizeof(int), cudaMemcpyDeviceToHost));
 
-    std::cout << "Hello from the GPU! The result is: " << c << std::endl;
+    printf("Hello from the GPU! The result is %d\n", c);
 
     gpuErrchk(cudaFree(dev_a));
     gpuErrchk(cudaFree(dev_b));
