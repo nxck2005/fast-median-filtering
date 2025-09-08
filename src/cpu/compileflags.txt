@@ -1,0 +1,1 @@
+g++ verify_opencv.cpp -o verify_opencv $(pkg-config --cflags --libs opencv4)
