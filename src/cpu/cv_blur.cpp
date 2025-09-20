@@ -5,6 +5,8 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 
+
+// g++ cv_blur.cpp -o o_blur $(pkg-config --cflags --libs opencv4)
 int main(int argc, char** argv) {
 	if (argc < 2) {
 		std::cout << "ERR: Please provide an image path!" << std::endl;
@@ -16,7 +18,7 @@ int main(int argc, char** argv) {
 		return 2;
 	}
 	cv::Mat filtered_image;
-	int kernelsize = 17;
+	int kernelsize = 19;
 	
 	auto start = std::chrono::high_resolution_clock::now();
 
@@ -24,6 +26,8 @@ int main(int argc, char** argv) {
 
 	auto end = std::chrono::high_resolution_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+	std::cout << duration.count() << "ms was taken" << std::endl;
 
 	cv::imshow("Original", original_image);
 	cv::imshow("Median Filtered", filtered_image);
