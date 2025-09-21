@@ -5,6 +5,9 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 
+// alias for image size. 0-255
+// use other types for bigger sizes
+using pixelSize = uchar;
 
 // g++ cv_blur.cpp -o o_blur $(pkg-config --cflags --libs opencv4)
 int main(int argc, char** argv) {
@@ -18,11 +21,13 @@ int main(int argc, char** argv) {
 		return 2;
 	}
 	cv::Mat filtered_image;
-	int kernelsize = 19;
+	int kernelSize;
+	std::cout << "Kernel Size? " << std::endl;
+	std::cin >> kernelSize;
 	
 	auto start = std::chrono::high_resolution_clock::now();
 
-	cv::medianBlur(original_image, filtered_image, kernelsize);
+	cv::medianBlur(original_image, filtered_image, kernelSize);
 
 	auto end = std::chrono::high_resolution_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
