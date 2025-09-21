@@ -5,6 +5,11 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 
+void hMFilter(cv::Mat inputarr, cv::Mat outputarr, int ksize) {
+	const int kernelSize = ksize;
+
+	outputarr = inputarr;
+}
 
 // g++ h_blur.cpp -o h_blur $(pkg-config --cflags --libs opencv4)
 int main(int argc, char** argv) {
@@ -24,7 +29,7 @@ int main(int argc, char** argv) {
 	auto start = std::chrono::high_resolution_clock::now();
 
     // replace with new func
-	cv::medianBlur(original_image, filtered_image, kernelsize);
+	hMFilter(original_image, filtered_image, kernelsize);
 
 	auto end = std::chrono::high_resolution_clock::now();
     // end of func
