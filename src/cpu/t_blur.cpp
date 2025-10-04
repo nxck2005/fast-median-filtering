@@ -10,14 +10,7 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 
-// --- Optimized Tiled Median Filter with Sliding Histogram ---
 
-/**
- * @brief Finds the median value from a 256-bin histogram.
- * @param histogram An array of 256 integers representing the pixel counts.
- * @param median_pos The position of the median element (e.g., (kernel*kernel)/2).
- * @return The pixel value (0-255) corresponding to the median.
- */
 inline uchar findMedianFromHistogram(const int* histogram, int median_pos) {
     int count = 0;
     for (int i = 0; i < 256; ++i) {
@@ -29,20 +22,6 @@ inline uchar findMedianFromHistogram(const int* histogram, int median_pos) {
     return 255; // Should not happen in practice
 }
 
-/**
- * @brief Performs median filtering on a horizontal slice of an image using a sliding histogram.
- *
- * This is the core optimized function. It processes a contiguous block of rows assigned to a single thread.
- * A histogram is built only once per row and then efficiently updated as the kernel window slides.
- *
- * @param src Pointer to the start of the source image data (single channel).
- * @param dst Pointer to the start of the destination image data (single channel).
- * @param width The full width of the source image.
- * @param height The full height of the source image.
- * @param start_row The first row this thread will process.
- * @param end_row The row after the last one this thread will process.
- * @param kernelSize The odd-sized dimension of the median filter kernel.
- */
 void medianFilterSlice_Histogram(const uchar* src, uchar* dst, int width, int height,
                                  int start_row, int end_row, int kernelSize) {
     const int radius = kernelSize / 2;
@@ -84,13 +63,6 @@ void medianFilterSlice_Histogram(const uchar* src, uchar* dst, int width, int he
     }
 }
 
-/**
- * @brief An improved parallel median filter using a sliding histogram algorithm.
- * @param src The input single-channel 8-bit image.
- * @param dst The output single-channel 8-bit image.
- * @param kernelSize The odd-sized dimension of the median filter kernel.
- * @param num_threads The number of threads to use for parallelization.
- */
 void TiledMedianFilterImproved(const cv::Mat& src, cv::Mat& dst, int kernelSize, int num_threads) {
     if (src.empty() || src.channels() != 1 || kernelSize % 2 == 0) {
         std::cerr << "ERR: Invalid input for TiledMedianFilterImproved." << std::endl;
