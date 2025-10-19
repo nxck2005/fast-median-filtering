@@ -43,7 +43,7 @@ The main benchmark executable is located in `src/main` and can be built using CM
 
 ### Execution
 
-The `median_benchmark` executable runs a performance comparison for various kernel sizes, pitting the hierarchical tiling implementation against OpenCV's. It saves the results as a PNG graph.
+The `median_benchmark` executable runs a performance comparison for various kernel sizes, pitting the hierarchical tiling implementation against OpenCV's.
 
 **Usage:**
 
