@@ -21,6 +21,8 @@ The main benchmark executable is located in `src/main` and can be built using CM
   * **Python 3** (with development libraries)
   * **gcc14** (gcc14 is required for the needed nvcc compiler present in the toolkit version used)
 
+  Also, the official Ubuntu 22.04 CUDA docker image was used for reproducibility.
+
 ### Compilation
 
 1.  Navigate to the main project directory:
