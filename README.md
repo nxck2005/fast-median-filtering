@@ -11,7 +11,7 @@ While the paper uses a NVIDIA L40S, The testing was done on a NVIDIA GeForce RTX
 
 ## Build from Source
 
-The main benchmark executable is located in `src/main` and can be built using CMake.
+The main benchmark and kernel source code is located in `src/main` and can be built using CMake.
 
 ### Dependencies
 
