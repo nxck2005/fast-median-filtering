@@ -19,7 +19,7 @@ The main benchmark executable is located in `src/main` and can be built using CM
   * **NVIDIA CUDA Toolkit** (The project is configured for compute capability `8.9`, e.g., Ada Lovelace architecture)
   * **OpenCV** (\>= 4.x)
   * **Python 3** (with development libraries)
-  * **gcc14** (gcc14 is required for the needed nvcc compiler present in the toolkit version used)
+  * **gcc-14** (gcc-14 is required for the needed nvcc compiler present in the toolkit version used. Any newer version will cause compilation errors)
 
   Also, the official Ubuntu 22.04 CUDA docker image was used for reproducibility.
 
