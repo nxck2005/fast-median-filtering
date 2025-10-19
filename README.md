@@ -65,7 +65,6 @@ The `median_benchmark` executable runs a performance comparison for various kern
 ./median_benchmark --filename ../../samples/sample1.JPG --type uint8 --max_ksize 79
 ```
 
-The program will output timing results to the console and generate a `performance_graph.png` in the build directory, visually comparing the execution time (ms) of the two methods across the range of kernel sizes.
 
 ## License
 
