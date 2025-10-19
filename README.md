@@ -1,10 +1,8 @@
 # A Parallel Implementation of Hierarchical Tiling for Median Filtering
 
-[](https://opensource.org/licenses/MIT)
-
 ## Overview
 
-This repository provides an academic C++ and CUDA implementation of the median filtering algorithm. The core of this project is based on the paper ["A Fast Parallel Median Filtering Algorithm Using Hierarchical Tiling"](), which proposes a method to efficiently compute median filters with large kernel sizes.
+This repository provides an academic C++ and CUDA implementation of the median filtering algorithm. The core of this project is based on the paper ["A Fast Parallel Median Filtering Algorithm Using Hierarchical Tiling"](https://dl.acm.org/doi/pdf/10.1145/3721238.3730709), which proposes a method to efficiently compute median filters with large kernel sizes.
 
 The primary implementation in `src/main` is designed to run on NVIDIA GPUs.
 It also benchmarks the implementation against OpenCV's implementation as you run it.
