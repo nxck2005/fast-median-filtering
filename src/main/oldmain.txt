@@ -41,7 +41,6 @@ void run_benchmark(const std::string& filename, int max_ksize) {
     std::vector<int> kernel_sizes;
     std::vector<double> opencv_times;
     std::vector<double> ht_times;
-    cv::Mat dst_ht; // Declare dst_ht here to access it after the loop
 
     std::cout << std::left << std::setw(15) << "Kernel Size"
               << std::setw(20) << "OpenCV Time (ms)"
@@ -51,7 +50,7 @@ void run_benchmark(const std::string& filename, int max_ksize) {
 
     for (int k = 7; k <= max_ksize; k += 2) {
         if (k < 3) continue;
-        cv::Mat dst_ocv;
+        cv::Mat dst_ocv, dst_ht;
         kernel_sizes.push_back(k);
 
         auto start_ocv = std::chrono::high_resolution_clock::now();
@@ -82,12 +81,6 @@ void run_benchmark(const std::string& filename, int max_ksize) {
                   << std::setw(30) << time_ht_ms
                   << std::setw(15) << (time_ocv.count() / time_ht_ms) << "x" << std::endl;
     }
-
-    // Save the original and final filtered image
-    cv::imwrite("FILT_old.jpg", src);
-    cv::imwrite("FILT_new.jpg", dst_ht);
-    std::cout << "\nSaved original image to FILT_old.jpg" << std::endl;
-    std::cout << "Saved filtered image to FILT_new.jpg" << std::endl;
 
     plt::figure_size(1200, 780);
     plt::named_plot("OpenCV cv::medianBlur", kernel_sizes, opencv_times, "r-o");

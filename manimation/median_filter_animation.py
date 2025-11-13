@@ -108,30 +108,13 @@ class MedianFilter(Scene):
             for j in range(-1, 2):
                 window_values.append(input_data[row + i, col + j])
         
-        # Show window values
-        values_text = Text(f"Window: {int(window_values[:3])}", font_size=24)
-        values_text2 = Text(f"        {int(window_values[3:6])}", font_size=24)
-        values_text3 = Text(f"        {int(window_values[6:])}", font_size=24)
-        
-        values_group = VGroup(values_text, values_text2, values_text3)
-        values_group.arrange(DOWN, aligned_edge=LEFT, buff=0.1)
-        values_group.to_edge(DOWN, buff=1.5)
-        
-        self.play(Write(values_group))
-        self.wait(0.5)
-        
-        # Sort and find median
-        sorted_values = sorted(window_values)
+        # Sort and find median (convert to Python ints)
+        sorted_values = sorted([int(v) for v in window_values])
         median_value = sorted_values[4]  # Middle value (5th element)
         
-        sorted_text = Text(f"Sorted: {sorted_values}", font_size=24, color=BLUE)
-        sorted_text.next_to(values_group, DOWN, buff=0.3)
+        median_text = Text(f"Sorting the values in the window, median = {median_value}", font_size=32, color=GREEN)
+        median_text.to_edge(DOWN, buff=1.5)
         
-        median_text = Text(f"Median = {median_value}", font_size=28, color=GREEN)
-        median_text.next_to(sorted_text, DOWN, buff=0.3)
-        
-        self.play(Write(sorted_text))
-        self.wait(0.3)
         self.play(Write(median_text))
         self.wait(0.5)
         
@@ -151,7 +134,5 @@ class MedianFilter(Scene):
         self.play(
             Transform(output_grid[output_idx], new_cell),
             FadeOut(highlight),
-            FadeOut(values_group),
-            FadeOut(sorted_text),
             FadeOut(median_text)
         )
