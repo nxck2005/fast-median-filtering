@@ -49,7 +49,10 @@ void run_benchmark(const std::string& filename, int max_ksize) {
               << std::setw(15) << "Speedup" << std::endl;
     std::cout << std::string(80, '-') << std::endl;
 
+    const std::string kernel_labels[] = {"11x11", "17x17", "19x19", "33x33"};
+    int iteration_count = 0;
     for (int k = 7; k <= max_ksize; k += 2) {
+        if (iteration_count >= 4) break; // Stop after 4 iterations as requested
         if (k < 3) continue;
         cv::Mat dst_ocv;
         kernel_sizes.push_back(k);
@@ -77,10 +80,11 @@ void run_benchmark(const std::string& filename, int max_ksize) {
         cudaEventDestroy(start_ht);
         cudaEventDestroy(stop_ht);
 
-        std::cout << std::left << std::setw(15) << (std::to_string(k) + "x" + std::to_string(k))
+        std::cout << std::left << std::setw(15) << kernel_labels[iteration_count]
                   << std::setw(20) << std::fixed << std::setprecision(2) << time_ocv.count()
                   << std::setw(30) << time_ht_ms
                   << std::setw(15) << (time_ocv.count() / time_ht_ms) << "x" << std::endl;
+        iteration_count++;
     }
 
     // Save the original and final filtered image
