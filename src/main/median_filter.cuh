@@ -37,7 +37,8 @@ __device__ __forceinline__ void compare_swap(T& a, T& b) {
     b = max_val;
 }
 
-// bitonic odd even sort (batchers paper)
+// bitonic odd even sort (batcher, 1968)
+// CUDA code
 template <typename T, int N>
 __device__ void sort_network(T arr[N]) {
     for (int i = 0; i < N; ++i) {
@@ -55,6 +56,10 @@ __device__ void sort_network(T arr[N]) {
     }
 }
 
+// @param T: template with pixel size (uchar)
+// @param KSIZE: kernel size
+// @param: TILE_W: width split
+// @param: TILE_H: horizontal split
 template <typename T, int KSIZE, int TILE_W, int TILE_H>
 __global__ void data_oblivious_kernel(const T* src, T* dst, int width, int height) {
     const int x = blockIdx.x * blockDim.x + threadIdx.x;
