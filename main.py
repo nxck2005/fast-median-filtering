@@ -1,5 +1,5 @@
 def main():
-    print("Hello from fast-median-filtering!")
+    print("Run cmake .. then make from src/main/build after setting up a CUDA container.")
 
 
 if __name__ == "__main__":
