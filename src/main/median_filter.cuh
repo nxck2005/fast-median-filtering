@@ -12,7 +12,7 @@
 // change for more verbose logging (what method was chosen, da/do)
 bool DEBUG = false;
 
-// Error checking lol, ignore
+// Error checking, ignore
 #define CUDA_CHECK(call)                                                    \
 do {                                                                        \
     cudaError_t err = call;                                                 \
